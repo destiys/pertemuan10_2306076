@@ -55,6 +55,28 @@ class _HomePageState extends State<HomePage>{
     );
   }
 
+  //methode mengubah data (update)
+  Future<void> updateProduct(int index, ProductModel product) async {
+    setState(() {
+      products[index] = product; 
+    });
+    await saveProduct(); 
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Produk berhasil diperbarui")),
+    );
+  }
+
+  //method hapus data (delete)
+  Future<void> deleteProduct(int index) async {
+    setState(() {
+      products.removeAt(index); 
+    });
+    await saveProduct(); 
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Produk berhasil dihapus")),
+    );
+  }
+
   //methode showDialog() 
   void showForm({ProductModel? product, int? index}) {
     //controler
@@ -98,12 +120,17 @@ class _HomePageState extends State<HomePage>{
                 description: descriptionController.text, 
                 price: int.parse(priceController.text),
               );
+              
               if (product == null) {
                 addProduct(newProduct);
+              } else {
+                if (index != null) {
+                  updateProduct(index, newProduct);
+                }
               } 
               Navigator.pop(context);
             }, 
-            child: Text("Simpan"),
+            child: const Text("Simpan"),
           ),
         ],
       ),
@@ -251,7 +278,19 @@ class _HomePageState extends State<HomePage>{
                             Text(product.description)
                           ],
                         ),
-
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.edit, color: Colors.blue),
+                              onPressed: () => showForm(product: product, index: index),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () => deleteProduct(index),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }
