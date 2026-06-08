@@ -1,9 +1,3 @@
-# pertemuan10_2306133
-<img width="917" height="952" alt="WhatsApp Image 2026-05-27 at 04 03 11" src="https://github.com/user-attachments/assets/7fe3ea83-8a06-4b26-b931-1dfe793a8e8a" />
-<img width="919" height="855" alt="WhatsApp Image 2026-05-27 at 04 04 51" src="https://github.com/user-attachments/assets/0d7b50fc-1067-4434-8c54-0801113352f0" />
-
-A new Flutter project.
-
 # Aplikasi Login Flutter
 
 ## Deskripsi
